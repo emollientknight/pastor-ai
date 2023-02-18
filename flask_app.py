@@ -24,7 +24,8 @@ dictConfig({
     'custom_handler': {
         'class' : 'logging.FileHandler',
         'formatter': 'default',
-        'filename' : '/var/log/WARN.log'
+        'filename' : 'flask.log',
+        'level': 'INFO'
         }
     },
     'root': {
