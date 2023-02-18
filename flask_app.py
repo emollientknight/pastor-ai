@@ -20,10 +20,16 @@ dictConfig({
         'class': 'logging.StreamHandler',
         'stream': 'ext://flask.logging.wsgi_errors_stream',
         'formatter': 'default'
-    }},
+        },
+    'custom_handler': {
+        'class' : 'logging.FileHandler',
+        'formatter': 'default',
+        'filename' : '/var/log/WARN.log'
+        }
+    },
     'root': {
         'level': 'INFO',
-        'handlers': ['wsgi']
+        'handlers': ['wsgi', 'custom_handler']
     }
 })
 
