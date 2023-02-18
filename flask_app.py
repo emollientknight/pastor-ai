@@ -38,6 +38,8 @@ dictConfig({
 app = Flask(__name__ 
     ,static_folder='client/build',static_url_path='')
 cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 sessions = Sessions()
 
@@ -47,6 +49,7 @@ def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/ask', methods=['POST'], )
+@cross_origin()
 def ask():
     content_type = request.headers.get('Content-Type')
     app.logger.info(content_type)
