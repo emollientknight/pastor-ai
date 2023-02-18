@@ -50,6 +50,7 @@ def serve():
 def ask():
     content_type = request.headers.get('Content-Type')
     app.logger.info(content_type)
+    app.logger.error(content_type)
     if (content_type == 'application/json'):
         json = request.json
         app.logger.info(json)

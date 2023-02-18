@@ -33,9 +33,11 @@ class ChatWindow extends Component {
       this.setState({ value: "" });
       setTimeout(() => this.scrollToBottom());
       var response = await this.fetchResponse(this.state.oldValue);
-      console.log(response);
-      this.props.receivedMessage(response);
-      setTimeout(() => this.scrollToBottom());
+      if (response != null ) {
+        console.log(response);
+        this.props.receivedMessage(response);
+        setTimeout(() => this.scrollToBottom());
+      }
     }
   };
 
@@ -54,7 +56,7 @@ class ChatWindow extends Component {
     const token = Math.floor(Math.random() * 1000000);
     const inputData = { input, token };
     // try {
-    const response = await fetch("/ask", {
+    const response = await fetch("http://127.0.0.1:5000/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +71,8 @@ class ChatWindow extends Component {
     } else {
       console.log("response didn't work");
       alert("Failed to connect to server");
-      throw new Error("Failed to connect to server");
+      // throw new Error("Failed to connect to server");
+      return null;
     }
   };
 
