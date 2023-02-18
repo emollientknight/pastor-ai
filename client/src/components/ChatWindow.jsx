@@ -56,7 +56,7 @@ class ChatWindow extends Component {
     const token = Math.floor(Math.random() * 1000000);
     const inputData = { input, token };
     // try {
-    const response = await fetch("http://mypastor.ai/ask", {
+    const response = await fetch("http://www.mypastor.ai/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
