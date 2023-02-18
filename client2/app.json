@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "pastor-ai2",
+    "slug": "pastor-ai2",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

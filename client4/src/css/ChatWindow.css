@@ -1,0 +1,54 @@
+div.chatWindow {
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 0 6px #ddd;
+  background-color: #f1f0f0;
+  border-radius: 8px;
+  width: 52%;
+  height: 100%;
+}
+/* TextField.chatInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+} */
+
+.SendIcon {
+  transform: rotate(-27deg) translateY(-4px);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+div.ChatIcon {
+  /* margin-left: 100px; */
+  justify-content: flex-end;
+  display: inline-flex;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  width: 100%;
+  min-width: 40%;
+}
+
+/* .AccountCircle {
+  position: fixed;
+  background-color: #eee;
+  padding: 6px 6px 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  line-height: 24px;
+  object-fit: cover;
+} */
+
+.SendIcon:hover svg {
+  fill: #1a73e8;
+}
+.SendIcon svg {
+  fill: #5f6368;
+  transition: fill 0.2s ease-in-out;
+}
