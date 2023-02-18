@@ -37,7 +37,7 @@ class Prompt:
         self.prompt = prompt
 
     def ask(self):
-        self.log("asking --")
+        self.log.info("asking --")
         self.answer = self.chatbot.ask(self.prompt)
         return self.answer
 

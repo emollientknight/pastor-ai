@@ -8,12 +8,12 @@ class Sessions:
         self.log = logging.getLogger("Sessions")
 
     def ask(self, token, input):
-        self.log("Sessions - ask")
+        self.log.info("Sessions - ask")
         if token not in self.sessions:
             self.sessions[token] = Session(token)
             # self.sessions[token].ask(None)
             for data in self.sessions[token].ask(None):
                 response = data["message"]
-            self.log(data["message"])
+            self.log.info(data["message"])
         return self.sessions[token].ask(input)
     
