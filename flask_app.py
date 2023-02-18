@@ -29,7 +29,7 @@ dictConfig({
 
 
 app = Flask(__name__ 
-    ,static_folder='client3/build',static_url_path='')
+    ,static_folder='client/build',static_url_path='')
 cors = CORS(app)
 
 sessions = Sessions()
@@ -48,9 +48,10 @@ def ask():
     if (content_type == 'application/json'):
         json = request.json
         app.logger.info(json)
-        data = sessions.ask(json['token'], json['input'])
-        app.logger.info(data['choices'][0]['text'])
-        return jsonify({"data": data['choices'][0]['text']}), 200
+        for data in sessions.ask(json['token'], json['input']):
+            response = data["message"]
+        app.logger.info(data["message"])
+        return jsonify({"data": data["message"]}), 200
     else:
         return 'Content-Type not supported!'
     

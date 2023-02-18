@@ -1,40 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { GiftedChat } from "react-web-gifted-chat";
-// import * as R from "ramda";
+import logo from "./logo.svg";
+import "./App.css";
+import { Box, Button } from "@mui/material";
+import BottomBar from "./components/BottomBar";
+import Body from "./components/Body";
+import { Helmet } from "react-helmet";
+import React, { Component } from "react";
 
-// import "./styles.css";
+class App extends Component {
+  constructor() {
+    super();
 
-export default function App() {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: "hello",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: '/Users/emollient/pastor-ai2/client2/resources/img/aiPastor.png',
-        },
+    this.state = {
+      page: 0,
+      chat: {
+        messages: [
+          {
+            id: 1,
+            text: "Hello",
+            sender: "bot",
+          },
+        ],
       },
-    ])
-  }, [])
+    };
+  }
 
-  const onSend = (messages = []) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+  handleValue() {
+    console.log("Value changed");
+  }
+
+  handleChangePage = (value) => {
+    if (value === this.state.page) return;
+    this.setState({ page: value });
   };
 
-  return (
-    <div style={{ flex: 1, height: "300px" }}>
-      <GiftedChat
-        messages={messages}
-        onSend={messages => onSend(messages)}
-        user={{
-          id: 1
-        }}
-      />
-    </div>
-  );
+  sendMessage = (message) => {
+    console.log("sent message: " + message);
+    const messages = [...this.state.chat.messages];
+    messages.push({
+      id: messages.length + 1,
+      text: message,
+      sender: "user",
+    });
+    this.setState({ chat: { messages: messages } });
+  };
+
+  receivedMessage = (message) => {
+    console.log("received message: " + message);
+    const messages = [...this.state.chat.messages];
+    messages.push({
+      id: messages.length + 1,
+      text: message,
+      sender: "bot",
+    });
+    this.setState({ chat: { messages: messages } }); 
+  }
+
+  render() {
+    console.log("rendering...");
+    return (
+      <div className="App">
+        <Body {...this.state} sendMessage={this.sendMessage} receivedMessage={this.receivedMessage}></Body>
+        <BottomBar onChangePage={this.handleChangePage}></BottomBar>
+      </div>
+    );
+  }
 }
+
+export default App;
