@@ -8,31 +8,27 @@ from sessions import Sessions
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(dotenv_path=dotenv_path)
+import logging
 
-from logging.config import dictConfig
+# from logging.config import dictConfig
 
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://flask.logging.wsgi_errors_stream',
-        'formatter': 'default'
-        },
-    'custom_handler': {
-        'class' : 'logging.FileHandler',
-        'formatter': 'default',
-        'filename' : 'flask.log',
-        'level': 'INFO'
-        }
-    },
-    'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi', 'custom_handler']
-    }
-})
+# dictConfig({
+#     'version': 1,
+#     'formatters': {'default': {
+#         'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+#     }},
+#     'handlers': {'wsgi': {
+#         'class': 'logging.StreamHandler',
+#         'stream': 'ext://flask.logging.wsgi_errors_stream',
+#         'formatter': 'default'
+#     }},
+#     'root': {
+#         'level': 'INFO',
+#         'handlers': ['wsgi']
+#     }
+# })
+
+logging.basicConfig(filename='record.log', level=logging.INFO)
 
 
 app = Flask(__name__ 
