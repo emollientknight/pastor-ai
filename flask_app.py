@@ -2,7 +2,7 @@ import os
 from time import sleep
 from dotenv import load_dotenv
 from flask import Flask,render_template,send_from_directory,request, jsonify,make_response
-from flask_cors import CORS, cross_origin
+# from flask_cors import CORS, cross_origin
 
 from sessions import Sessions
 
@@ -37,7 +37,7 @@ dictConfig({
 
 app = Flask(__name__ 
     ,static_folder='client/build',static_url_path='')
-cors = CORS(app)
+# cors = CORS(app)
 
 sessions = Sessions()
 
