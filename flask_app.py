@@ -51,16 +51,18 @@ def serve():
 @app.route('/ask', methods=['POST'], )
 @cross_origin()
 def ask():
-    content_type = request.headers.get('Content-Type')
-    app.logger.info(content_type)
-    app.logger.error(content_type)
-    if (content_type == 'application/json'):
-        json = request.json
-        app.logger.info(json)
-        for data in sessions.ask(json['token'], json['input']):
-            response = data["message"]
-        app.logger.info(data["message"])
-        return jsonify({"data": data["message"]}), 200
-    else:
-        return 'Content-Type not supported!'
+    print("HJELLOO")
+    return jsonify({"data": "hello world"}), 200
+    # content_type = request.headers.get('Content-Type')
+    # app.logger.info(content_type)
+    # app.logger.error(content_type)
+    # if (content_type == 'application/json'):
+    #     json = request.json
+    #     app.logger.info(json)
+    #     for data in sessions.ask(json['token'], json['input']):
+    #         response = data["message"]
+    #     app.logger.info(data["message"])
+    #     return jsonify({"data": data["message"]}), 200
+    # else:
+    #     return 'Content-Type not supported!'
     
