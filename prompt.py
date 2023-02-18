@@ -1,6 +1,7 @@
 import os, asyncio
 from dotenv import load_dotenv
 from revChatGPT.V1 import Chatbot
+import logging
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(dotenv_path=dotenv_path)
@@ -21,6 +22,7 @@ class Prompt:
             "password": os.getenv("password"),
         })
         # self.answer = self.chatbot.ask(self.prompt)
+        self.log = logging.getLogger("Prompt")
     
     def getInitialPrompt(self):
         return self.initialPrompt.format(self.religion, self.inspiration)
@@ -35,6 +37,7 @@ class Prompt:
         self.prompt = prompt
 
     def ask(self):
+        self.log("asking --")
         self.answer = self.chatbot.ask(self.prompt)
         return self.answer
 
