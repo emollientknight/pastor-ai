@@ -5,3 +5,4 @@ activate
 .vscode
 .DS_Store
 flask.log
+record.log
